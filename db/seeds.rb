@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 50.times do
@@ -18,4 +20,6 @@ require 'faker'
     official: Faker::Address.country_by_code(code: Faker::Address.country_code),
     common: Faker::Address.country_by_code(code: Faker::Address.country_code)
   )
+rescue StandardError => e
+  puts 'Attribute must be unique'
 end
