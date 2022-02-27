@@ -5,4 +5,5 @@ class Name < ApplicationRecord
   has_many :native_names, dependent: :destroy
 
   validates :common, :official, presence: true
+  validates :common, :official, uniqueness: true
 end
