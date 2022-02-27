@@ -48,12 +48,12 @@ class CountriesRepresenter
   def official_native_name(country)
     return 'Unvailable' if country.names.blank?
 
-    country.names.first.native_names.first.official
+    country.names.first.native_names.first&.official
   end
 
   def common_native_name(country)
     return 'Unvailable' if country.names.blank?
 
-    country.names.first.native_names.first.common
+    country.names.first.native_names.first&.common
   end
 end

@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+50.times do
+  Country.create!(
+    capital: Faker::Address.country,
+    cca2: Faker::Address.country_code,
+    cca3: Faker::Address.country_code_long,
+    flag: Faker::Address.country_code,
+    ccn3: Faker::Lorem.characters(number: 3),
+    cioc: Faker::Address.country_code_long,
+    independent: true,
+    status: 'officially-assigned',
+    un_member: true
+  ).names.create!(
+    official: Faker::Address.country_by_code(code: Faker::Address.country_code),
+    common: Faker::Address.country_by_code(code: Faker::Address.country_code)
+  ).native_names.create!(
+    official: Faker::Address.country_by_code(code: Faker::Address.country_code),
+    common: Faker::Address.country_by_code(code: Faker::Address.country_code)
+  )
+end
