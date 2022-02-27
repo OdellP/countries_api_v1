@@ -25,7 +25,7 @@ describe 'Countries API', type: :request do
       get '/api/v1/countries'
 
       expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body).size).to eq(1)
+      expect(JSON.parse(response.body).size).to eq(4)
     end
   end
 
@@ -36,7 +36,7 @@ describe 'Countries API', type: :request do
              params: { country: {capital: 'Mexico City', cca2: 'ME', cca3: 'MEX', cioc: 'MEX', ccn3: 'MEX',
                                   independent: true, un_member: true, status: 'officially-assigned', flag: 'ME' },
                                  name: { official: "Mexico", common: "Mexico" } }
-      end.to change { Country.count }.from(0).to(1)
+      end.to change { Country.count }.from(3).to(4)
 
       expect(response).to have_http_status(:created)
     end
@@ -61,7 +61,7 @@ describe 'Countries API', type: :request do
     it 'deletes a Country' do
       expect do
         delete "/api/v1/countries/#{country.id}"
-      end.to change { Country.count }.from(1).to(0)
+      end.to change { Country.count }.from(4).to(3)
 
       expect(response).to have_http_status(:no_content)
     end
