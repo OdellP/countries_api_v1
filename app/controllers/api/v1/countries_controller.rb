@@ -18,6 +18,16 @@ module Api
         end
       end
 
+      def show
+        country = Country.find(params[:id])
+
+        if country
+          render json: CountryRepresenter.new(country).as_json
+        else
+          render json: { message: "Could not find country" }, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         Country.find(params[:id]).destroy!
 
