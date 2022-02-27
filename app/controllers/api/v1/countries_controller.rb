@@ -3,7 +3,9 @@ module Api
   module V1
     class CountriesController < ApplicationController
       def index
-        render json: Country.all
+        countries = Country.all
+
+        render json: CountriesRepresenter.new(countries).as_json
       end
 
       def create
@@ -28,5 +30,5 @@ module Api
         params.require(:country).permit(:name, :capital, :cca2, :cca3, :flag)
       end
     end
-  end 
+  end
 end

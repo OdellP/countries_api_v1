@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_27_012211) do
+ActiveRecord::Schema.define(version: 2022_02_27_020716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,5 +31,17 @@ ActiveRecord::Schema.define(version: 2022_02_27_012211) do
     t.string "official", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "country_id"
   end
+
+  create_table "native_names", force: :cascade do |t|
+    t.string "official", null: false
+    t.string "common", null: false
+    t.bigint "name_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name_id"], name: "index_native_names_on_name_id"
+  end
+
+  add_foreign_key "native_names", "names"
 end
