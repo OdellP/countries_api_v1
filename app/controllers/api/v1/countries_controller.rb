@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Api
   module V1
     class CountriesController < ApplicationController
@@ -24,7 +25,7 @@ module Api
         if country
           render json: CountryRepresenter.new(country).as_json
         else
-          render json: { message: "Could not find country" }, status: :unprocessable_entity
+          render json: { message: 'Could not find country' }, status: :unprocessable_entity
         end
       end
 
@@ -37,7 +38,7 @@ module Api
       private
 
       def country_params
-        params.require(:country).permit(:name, :capital, :cca2, :cca3, :flag)
+        params.require(:country).permit(:capital, :cca2, :cca3, :flag, :ccn3, :cioc, :independent, :status, :un_member, :name_id)
       end
     end
   end

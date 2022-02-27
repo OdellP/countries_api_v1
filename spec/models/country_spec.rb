@@ -5,6 +5,10 @@ RSpec.describe Country, type: :model do
     it { should validate_presence_of(:capital) }
     it { should validate_presence_of(:cca2) }
     it { should validate_presence_of(:cca3) }
+    it { should validate_presence_of(:independent) }
+    it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:un_member) }
+    it { should validate_presence_of(:cioc) }
     it { should validate_presence_of(:flag) }
   end
 
@@ -13,6 +17,8 @@ RSpec.describe Country, type: :model do
     it { should validate_length_of(:cca2).is_at_most(2) }
     it { should validate_length_of(:flag).is_at_most(2) }
     it { should validate_length_of(:cca3).is_at_most(3) }
+    it { should validate_length_of(:ccn3).is_at_most(3) }
+    it { should validate_length_of(:cioc).is_at_most(3) }
   end
 
   describe 'Associations' do
